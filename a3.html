@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login / Signup</title>
+  <style>
+    body {
+      background: linear-gradient(to bottom, #ffe6f0, #ffd9ec);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+    }
+
+    .box {
+      background-color: white;
+      padding: 30px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 15px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px;
+      background-color: skyblue;
+      color: rgb(44, 37, 177);
+      border: none;
+      width: 100%;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h2>Enter your email ID</h2>
+    <input type="text" id="email" placeholder="Email ID" />
+    <button onclick="goToPayment()"><a href="a4.html">Continue</a></button>
+
+  </div>
+
+  <script>
+    function goToPayment() {
+      const email = document.getElementById('email').value.trim();
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      if (email === '') {
+        alert("Please enter your Email ID.");
+      } else if (!emailPattern.test(email)) {
+        alert("Please enter a valid email address.");
+      } else {
+        // Only go to next page if valid
+        window.location.href = `a2.html?email=${encodeURIComponent(email)}`;
+      }
+    }
+  </script>
+</body>
+</html>

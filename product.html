@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ShopEasy – 3D Printing Products</title>
+<style>
+body { font-family: Arial, sans-serif; margin:0; background:#f4f4f4; }
+header { background:#9ddbf5; padding:15px 30px; font-size:22px; font-weight:bold; display:flex; justify-content:space-between; align-items:center;}
+.product-container { max-width:1000px; margin:20px auto; display:flex; flex-wrap:wrap; gap:20px; }
+.product { background:white; padding:15px; border-radius:8px; width:180px; text-align:center; box-shadow:0 2px 5px rgba(0,0,0,0.1);}
+.product img { width:160px; height:160px; object-fit:cover; border-radius:8px; }
+.product h3 { font-size:16px; margin:10px 0 5px; }
+.product p { margin:5px 0; font-weight:bold; color:green; }
+.product button { padding:8px 15px; background:#0099cc; color:white; border:none; border-radius:5px; cursor:pointer; }
+.product button:hover { background:#0077aa; }
+.cart-link { position:relative; text-decoration:none; color:black; font-weight:bold; padding:8px 15px; background:white; border-radius:8px; box-shadow:0 2px 5px rgba(0,0,0,0.2); }
+.cart-count { position:absolute; top:-5px; right:-5px; background:red; color:white; font-size:12px; width:18px; height:18px; border-radius:50%; display:flex; align-items:center; justify-content:center; }
+</style>
+</head>
+<body>
+
+<header>
+  🛒 ShopEasy – 3D Printing Products
+  <a href="cart.html" class="cart-link">Cart <span class="cart-count" id="cartCount">0</span></a>
+</header>
+
+<div class="product-container">
+
+  <!-- PRODUCT TEMPLATE -->
+  <div class="product" data-name="Letter Keychain" data-price="114" data-image="https://i.postimg.cc/8PtjFrN2/Whats-App-Image-2025-11-13-at-17-21-01-f874ea59.jpg">
+    <img src="https://i.postimg.cc/8PtjFrN2/Whats-App-Image-2025-11-13-at-17-21-01-f874ea59.jpg">
+    <h3>Letter Keychain</h3>
+    <p>₹114</p>
+    <button onclick="handleView('amount1.html')">View</button>
+  </div>
+
+  <div class="product" data-name="Custom Name Tag Keychain" data-price="164" data-image="https://i.postimg.cc/YqyS3KZm/Whats-App-Image-2025-11-13-at-16-38-51-95a7e4ab.jpg">
+    <img src="https://i.postimg.cc/YqyS3KZm/Whats-App-Image-2025-11-13-at-16-38-51-95a7e4ab.jpg">
+    <h3>Custom Name Tag Keychain</h3>
+    <p>₹198</p>
+    <button onclick="handleView('amount2.html')">View</button>
+  </div>
+
+  <div class="product" data-name="NameVibe Keychain" data-price="164" data-image="https://i.postimg.cc/QdMQBmwt/Whats-App-Image-2025-11-11-at-21-44-53-fcc15956.jpg">
+    <img src="https://i.postimg.cc/QdMQBmwt/Whats-App-Image-2025-11-11-at-21-44-53-fcc15956.jpg">
+    <h3>NameVibe Keychain</h3>
+    <p>₹198</p>
+    <button onclick="handleView('amount3.html')">View</button>
+  </div>
+
+  <div class="product" data-name="Unicorn Keychain" data-price="164" data-image="https://i.postimg.cc/d17n7YHx/Whats-App-Image-2025-11-11-at-21-44-54-bf83779a.jpg">
+    <img src="https://i.postimg.cc/d17n7YHx/Whats-App-Image-2025-11-11-at-21-44-54-bf83779a.jpg">
+    <h3>Unicorn Keychain</h3>
+    <p>₹164</p>
+    <button onclick="handleView('amount4.html')">View</button>
+  </div>
+  
+    
+  <div class="product" data-name="PhotoFrame with stand" data-price="164" data-image="https://i.postimg.cc/d17n7YHx/Whats-App-Image-2025-11-11-at-21-44-54-bf83779a.jpg">
+   <img src="https://i.postimg.cc/jdG7yqyj/Whats-App-Image-2025-11-07-at-08-53-58-099fbba9.jpg" alt="PhotoFrame with stand" onclick="nextSlide()">
+    <h3>PhotoFrame with stand</h3>
+    <p>₹198</p>
+    <button onclick="handleView('amount5.html')">View</button>
+  </div>
+  
+  <div class="product" data-name="Birthday Frame" data-price="164" data-image="https://i.postimg.cc/d17n7YHx/Whats-App-Image-2025-11-11-at-21-44-54-bf83779a.jpg">
+   <img src="https://i.postimg.cc/jjvL5yK0/Whats-App-Image-2025-11-07-at-10-54-50-03bd0c20.jpg" alt="Birthday Frame" onclick="nextSlide()">
+   <h3>Birthday Frame</h3>
+    <p>₹430</p>
+    <button onclick="handleView('amount6.html')">View</button>
+  </div>
+  
+  <div class="product" data-name="Wood Engraved Frame" data-price="164" data-image="https://i.postimg.cc/d17n7YHx/Whats-App-Image-2025-11-11-at-21-44-54-bf83779a.jpg">
+     <img src="https://i.postimg.cc/43XqNgLz/Whats-App-Image-2025-11-07-at-08-53-58-6ab0890f.jpg" alt="Wood Engraved Frame" onclick="nextSlide()">
+    <h3>Wood Engraved Frame</h3>
+    <p>₹330</p>
+    <button onclick="handleView('amount7.html')">View</button>
+  </div>
+  
+  <div class="product" data-name="Designer Table Frame" data-price="164" data-image="https://i.postimg.cc/d17n7YHx/Whats-App-Image-2025-11-11-at-21-44-54-bf83779a.jpg">
+       <img src="https://i.postimg.cc/mgSRSVKN/Whats-App-Image-2025-11-07-at-08-53-58-ee900066.jpg" alt="Designer Table Frame" onclick="nextSlide()">
+   <h3>Designer Table Frame</h3>
+    <p>₹430</p>
+    <button onclick="handleView('amount8.html')">View</button>
+  </div>
+   
+  <div class="product" data-name="Couples Photos Frame" data-price="164" data-image="https://i.postimg.cc/ZYLxQdQY/Whats-App-Image-2025-12-10-at-19-33-29-dd4202ed.jpg">
+    <img src="https://i.postimg.cc/ZYLxQdQY/Whats-App-Image-2025-12-10-at-19-33-29-dd4202ed.jpg">
+    <h3>Couples Photos Frame</h3>
+    <p>₹800</p>
+    <button onclick="handleView('amount9.html')">View</button>
+  </div>
+  
+  <div class="product" data-name="Ganesh Toy" data-price="164" data-image="https://i.postimg.cc/d17n7YHx/Whats-App-Image-2025-11-11-at-21-44-54-bf83779a.jpg">
+      <img src="https://i.postimg.cc/HkGtNXhY/Whats-App-Image-2025-11-11-at-21-44-54-04fbd41c.jpg" alt="Ganesh Toy">
+          <h3>Ganesh Toy</h3>
+    <p>₹430</p>
+    <button onclick="handleView('amount10.html')">View</button>
+  </div>
+  
+  <div class="product" data-name="Cat Toy" data-price="164" data-image="https://i.postimg.cc/d17n7YHx/Whats-App-Image-2025-11-11-at-21-44-54-bf83779a.jpg">
+       <img src="https://i.postimg.cc/JzQV7b8P/Whats-App-Image-2025-11-13-at-17-42-54-00c64266.jpg" alt="Cat Toy">
+    <h3>Cat Toy</h3>
+    <p>₹430</p>
+    <button onclick="handleView('amount11.html')">View</button>
+  </div>
+
+  <!-- Continue for products 5 to 10 -->
+  <!-- Already included in your code -->
+
+</div>
+
+<script>
+function handleView(page){
+  window.location.href = page;
+}
+
+// Cart count update
+function updateCartCount(){
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+  let count = cart.reduce((sum, item) => sum + item.qty, 0);
+  document.getElementById('cartCount').innerText = count;
+}
+updateCartCount();
+</script>
+
+</body>
+</html>

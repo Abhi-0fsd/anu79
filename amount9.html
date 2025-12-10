@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Product Details</title>
+
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #fafafa;
+    margin: 0;
+    padding: 30px;
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: auto;
+    display: flex;
+    gap: 40px;
+  }
+
+  /* Left Section – Images + Video */
+  .left {
+    width: 50%;
+  }
+
+  .main-media {
+    width: 100%;
+    border-radius: 12px;
+  }
+
+  .thumb-box {
+    display: flex;
+    gap: 12px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+  }
+
+  .thumb-box img,
+  .thumb-box video {
+    width: 120px;
+    height: 120px;
+    border-radius: 8px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: 0.3s;
+    object-fit: cover;
+  }
+
+  .thumb-box img:hover,
+  .thumb-box video:hover {
+    border: 2px solid #0099ff;
+  }
+
+  /* Right details section */
+  .right {
+    flex: 1;
+  }
+
+  .product-title {
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  .price {
+    color: green;
+    font-size: 26px;
+    margin-top: 15px;
+  }
+
+  .old-price {
+    color: #777;
+    text-decoration: line-through;
+    margin-left: 10px;
+    font-size: 18px;
+  }
+
+  .offer-tag {
+    background: red;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 6px;
+    display: inline-block;
+    margin-top: 10px;
+  }
+
+  .desc {
+    font-size: 16px;
+    margin: 20px 0;
+  }
+
+  .buy-btn {
+    background: #ff9900;
+    padding: 12px 22px;
+    border: none;
+    color: white;
+    font-size: 18px;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+</style>
+
+<script>
+  // Change main display media (image/video)
+  function changeMedia(src, type) {
+    let mainBox = document.getElementById("mainDisplay");
+
+    if (type === "image") {
+      mainBox.innerHTML = `<img src="${src}" class="main-media">`;
+    } else {
+      mainBox.innerHTML = `
+        <video class="main-media" controls>
+          <source src="${src}" type="video/mp4">
+        </video>`;
+    }
+  }
+</script>
+
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Left Side Images -->
+  <div class="left">
+
+    <!-- Main Display -->
+    <div id="mainDisplay">
+      <img 
+        src="https://i.postimg.cc/ZYLxQdQY/Whats-App-Image-2025-12-10-at-19-33-29-dd4202ed.jpg" 
+        class="main-media">
+    </div>
+
+    <!-- Thumbnails -->
+    <div class="thumb-box">
+
+      <!-- Image 1 -->
+      <img 
+        src="https://i.postimg.cc/ZYLxQdQY/Whats-App-Image-2025-12-10-at-19-33-29-dd4202ed.jpg"
+        onclick="changeMedia(this.src, 'image')" />
+
+      <!-- Image 2 -->
+      <img 
+        src="https://i.postimg.cc/ZYLxQdQY/Whats-App-Image-2025-12-10-at-19-33-29-dd4202ed.jpg"
+        onclick="changeMedia(this.src, 'image')" />
+
+      <video src="C:\Users\narav\OneDrive\Desktop\3dpri\WhatsApp Video 2025-12-10 at 19.33.27_363775e5.mp4" controls></video>
+
+    </div>
+  </div>
+
+  <!-- Right Side Info -->
+  <div class="right">
+    <h1 class="product-title">Couples PhotoFrame</h1>
+
+    <span class="offer-tag">43% OFF</span>
+
+    <p class="price">
+      ₹800 
+      <span class="old-price">₹1000</span>
+    </p>
+
+    <p class="desc">
+      ✔ Matte Finish<br>
+      ✔ Long Lasting<br>
+      ✔ Natural Look
+    </p>
+
+    <a href="am9.html">
+      <button class="buy-btn">Buy Now</button>
+    </a>
+  </div>
+
+</div>
+
+</body>
+</html>

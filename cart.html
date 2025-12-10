@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Your Cart - ShopEasy</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+    }
+
+    header {
+      background: #9ddbf5;
+      padding: 15px 30px;
+      font-size: 22px;
+      color: black;
+      font-weight: bold;
+      box-shadow: 0 2px 5px rgba(0,0,0,.1);
+    }
+
+    .cart-container {
+      max-width: 900px;
+      margin: 30px auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .cart-title {
+      font-size: 24px;
+      margin-bottom: 20px;
+      font-weight: bold;
+    }
+
+    .cart-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #ddd;
+      padding: 15px 0;
+    }
+
+    .cart-item img {
+      width: 70px;
+      height: 70px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-right: 20px;
+    }
+
+    .item-details {
+      flex: 1;
+      display: flex;
+      align-items: center;
+    }
+
+    .item-name {
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .item-price {
+      margin-left: 20px;
+      font-size: 16px;
+      font-weight: bold;
+      color: green;
+    }
+
+    .qty-box {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .qty-box button {
+      width: 28px;
+      height: 28px;
+      border: none;
+      background: skyblue;
+      color: black;
+      font-size: 18px;
+      cursor: pointer;
+      border-radius: 6px;
+    }
+
+    .remove-btn {
+      color: red;
+      cursor: pointer;
+      margin-left: 20px;
+      font-size: 14px;
+    }
+
+    .total-section {
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .checkout-btn {
+      margin-top: 20px;
+      width: 100%;
+      padding: 15px;
+      background: green;
+      color: white;
+      border: none;
+      font-size: 18px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .checkout-btn:hover {
+      background: darkgreen;
+    }
+
+    .back-btn {
+      display: inline-block;
+      margin-top: 20px;
+      text-decoration: none;
+      padding: 10px 20px;
+      background: #ddd;
+      border-radius: 8px;
+      color: black;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  🛒 ShopEasy - Cart
+</header>
+
+<div class="cart-container">
+  <div class="cart-title">Your Shopping Cart</div>
+  
+
+  <div id="cartItems">
+
+  </div>
+
+  <div class="total-section">
+    <div>Total:</div>
+    <div id="grandTotal">₹0</div>
+  </div>
+
+  <button class="checkout-btn">Proceed to Checkout</button>
+
+  <a href="index.html" class="back-btn">⬅ Back to Home</a>
+</div>
+
+<script>
+function loadCart() {
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  let container = document.getElementById("cartItems");
+  let total = 0;
+
+  container.innerHTML = "";
+
+  cart.forEach((item, index) => {
+    total += item.price * item.qty;
+container.innerHTML += `
+  <div class="cart-item">
+    <div class="item-details">
+      <img src="https://i.postimg.cc/8PtjFrN2/Whats-App-Image-2025-11-13-at-17-21-01-f874ea59.jpg">
+      <div>
+        <div class="item-name">${item.name}</div>
+        <div class="item-price">₹${item.price}</div>
+      </div>
+    </div>
+
+    <div class="qty-box">
+      <button onclick="changeQty(${index}, -1)">-</button>
+      <span>${item.qty}</span>
+      <button onclick="changeQty(${index}, 1)">+</button>
+    </div>
+
+    <div class="remove-btn" onclick="removeItem(${index})">Remove</div>
+  </div>
+`;
+container.innerHTML += `
+  <div class="cart-item">
+    <div class="item-details">
+ <img src="https://i.postimg.cc/YqyS3KZm/Whats-App-Image-2025-11-13-at-16-38-51-95a7e4ab.jpg" alt="Custom Name Tag Keychain">
+      <div>
+        <div class="item-name">${item.name}</div>
+        <div class="item-price">₹${item.price}</div>
+      </div>
+    </div>
+
+    <div class="qty-box">
+      <button onclick="changeQty(${index}, -1)">-</button>
+      <span>${item.qty}</span>
+      <button onclick="changeQty(${index}, 1)">+</button>
+    </div>
+
+    <div class="remove-btn" onclick="removeItem(${index})">Remove</div>
+  </div>
+`;
+container.innerHTML += `
+  <div class="cart-item">
+    <div class="item-details">
+ <img src="https://i.postimg.cc/QdMQBmwt/Whats-App-Image-2025-11-11-at-21-44-53-fcc15956.jpg" alt="NameVibe Keychain">
+      <div>
+        <div class="item-name">${item.name}</div>
+        <div class="item-price">₹${item.price}</div>
+      </div>
+    </div>
+
+    <div class="qty-box">
+      <button onclick="changeQty(${index}, -1)">-</button>
+      <span>${item.qty}</span>
+      <button onclick="changeQty(${index}, 1)">+</button>
+    </div>
+
+    <div class="remove-btn" onclick="removeItem(${index})">Remove</div>
+  </div>
+`;
+container.innerHTML += `
+  <div class="cart-item">
+    <div class="item-details">
+   <img src="https://i.postimg.cc/d17n7YHx/Whats-App-Image-2025-11-11-at-21-44-54-bf83779a.jpg" alt="Unicorn Keychain">
+      <div>
+        <div class="item-name">${item.name}</div>
+        <div class="item-price">₹${item.price}</div>
+      </div>
+    </div>
+
+    <div class="qty-box">
+      <button onclick="changeQty(${index}, -1)">-</button>
+      <span>${item.qty}</span>
+      <button onclick="changeQty(${index}, 1)">+</button>
+    </div>
+
+    <div class="remove-btn" onclick="removeItem(${index})">Remove</div>
+  </div>
+`;
+container.innerHTML += `
+  <div class="cart-item">
+    <div class="item-details">
+ <img src="https://i.postimg.cc/jdG7yqyj/Whats-App-Image-2025-11-07-at-08-53-58-099fbba9.jpg" alt="PhotoFrame with stand">
+      <div>
+        <div class="item-name">${item.name}</div>
+        <div class="item-price">₹${item.price}</div>
+      </div>
+    </div>
+
+    <div class="qty-box">
+      <button onclick="changeQty(${index}, -1)">-</button>
+      <span>${item.qty}</span>
+      <button onclick="changeQty(${index}, 1)">+</button>
+    </div>
+
+    <div class="remove-btn" onclick="removeItem(${index})">Remove</div>
+  </div>
+`;
+container.innerHTML += `
+  <div class="cart-item">
+    <div class="item-details">
+ <img src="https://i.postimg.cc/jjvL5yK0/Whats-App-Image-2025-11-07-at-10-54-50-03bd0c20.jpg" alt="Birthday Frame">
+      <div>
+        <div class="item-name">${item.name}</div>
+        <div class="item-price">₹${item.price}</div>
+      </div>
+    </div>
+
+    <div class="qty-box">
+      <button onclick="changeQty(${index}, -1)">-</button>
+      <span>${item.qty}</span>
+      <button onclick="changeQty(${index}, 1)">+</button>
+    </div>
+
+    <div class="remove-btn" onclick="removeItem(${index})">Remove</div>
+  </div>
+`;
+container.innerHTML += `
+  <div class="cart-item">
+    <div class="item-details">
+<img src="https://i.postimg.cc/43XqNgLz/Whats-App-Image-2025-11-07-at-08-53-58-6ab0890f.jpg" alt="Wood Engraved Frame">
+      <div>
+        <div class="item-name">${item.name}</div>
+        <div class="item-price">₹${item.price}</div>
+      </div>
+    </div>
+
+    <div class="qty-box">
+      <button onclick="changeQty(${index}, -1)">-</button>
+      <span>${item.qty}</span>
+      <button onclick="changeQty(${index}, 1)">+</button>
+    </div>
+
+    <div class="remove-btn" onclick="removeItem(${index})">Remove</div>
+  </div>
+`;
+container.innerHTML += `
+  <div class="cart-item">
+    <div class="item-details">
+  <img src="https://i.postimg.cc/mgSRSVKN/Whats-App-Image-2025-11-07-at-08-53-58-ee900066.jpg" alt="Designer Table Frame">
+      <div>
+        <div class="item-name">${item.name}</div>
+        <div class="item-price">₹${item.price}</div>
+      </div>
+    </div>
+
+    <div class="qty-box">
+      <button onclick="changeQty(${index}, -1)">-</button>
+      <span>${item.qty}</span>
+      <button onclick="changeQty(${index}, 1)">+</button>
+    </div>
+
+    <div class="remove-btn" onclick="removeItem(${index})">Remove</div>
+  </div>
+`;
+container.innerHTML += `
+  <div class="cart-item">
+    <div class="item-details">
+    <img src="https://i.postimg.cc/HkGtNXhY/Whats-App-Image-2025-11-11-at-21-44-54-04fbd41c.jpg" alt="Ganesh Toy">
+      <div>
+        <div class="item-name">${item.name}</div>
+        <div class="item-price">₹${item.price}</div>
+      </div>
+    </div>
+
+    <div class="qty-box">
+      <button onclick="changeQty(${index}, -1)">-</button>
+      <span>${item.qty}</span>
+      <button onclick="changeQty(${index}, 1)">+</button>
+    </div>
+
+    <div class="remove-btn" onclick="removeItem(${index})">Remove</div>
+  </div>
+`;
+container.innerHTML += `
+  <div class="cart-item">
+    <div class="item-details">
+    <img src="https://i.postimg.cc/JzQV7b8P/Whats-App-Image-2025-11-13-at-17-42-54-00c64266.jpg" alt="Cat Toy">
+      <div>
+        <div class="item-name">${item.name}</div>
+        <div class="item-price">₹${item.price}</div>
+      </div>
+    </div>
+
+    <div class="qty-box">
+      <button onclick="changeQty(${index}, -1)">-</button>
+      <span>${item.qty}</span>
+      <button onclick="changeQty(${index}, 1)">+</button>
+    </div>
+
+    <div class="remove-btn" onclick="removeItem(${index})">Remove</div>
+  </div>
+`;
+
+
+
+  });
+
+  document.getElementById("grandTotal").innerText = "₹" + total;
+}
+
+function changeQty(i, change) {
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  cart[i].qty += change;
+
+  if (cart[i].qty <= 0) cart.splice(i, 1);
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+  loadCart();
+}
+
+function removeItem(i) {
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  cart.splice(i, 1);
+  localStorage.setItem("cart", JSON.stringify(cart));
+  loadCart();
+}
+
+document.addEventListener("DOMContentLoaded", loadCart);
+</script>
+
+</body>
+</html>

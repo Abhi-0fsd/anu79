@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Report</title>
+</head>
+<style>
+    body {
+font-family: Arial, sans-serif; 
+ background-color: skyblue; 
+ text-align: center; 
+margin-top: 70px;
+}
+</style>
+<body>
+   
+    <h1>
+        <center>Report</center></h1>
+    <h2 align ="center" style = "color:rgb(181, 28, 140)">3D printing</h2>
+
+ <table align="center" border="1" style="background-color: black;">
+ <tr align="center" style="background-color: lightblue;">
+ <th width="150">s.no</th>  
+ <th width="150">date</th> 
+ <th width="150">email_id</th> 
+ <th width="100">phone no</th>
+ <th width="150">name</th>
+ <th width="150">Address</th>
+ <th width="150">City</th>
+ <th width="150">State</th>
+ <th width="150">Pincode</th>
+
+
+ </tr>
+ 
+ <script>
+    document.getElementById("registrationForm").addEventListener("submit", e => {
+  e.preventDefault();
+
+  const student = {
+    rollNo: document.querySelector('input[name="rollNo"]').value,
+    name: document.querySelector('input[name="name"]').value,
+    emailID: document.querySelector('input[name="email_ID"]').value
+  };
+
+  fetch("http://localhost:8080/api/students/register", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(student)
+  })
+  .then(response => response.json())
+  .then(data => {
+    alert("Registration successful!");
+    console.log(data);
+    // Optionally redirect:
+    // window.location.href = "Digital Marketing.html";
+  })
+  .catch(error => {
+    console.error("Error:", error);
+    alert("Registration failed.");
+  });
+});
+
+ </script>
+</body>
+</html>

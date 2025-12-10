@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Product Details</title>
+  <link rel="stylesheet" href="product.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="left">
+     <img src="https://i.postimg.cc/QdMQBmwt/Whats-App-Image-2025-11-11-at-21-44-53-fcc15956.jpg" alt="NameVibe Keychain">
+    </div>
+    <div class="right">
+      <h1>NameVibe Keychain</h1>
+      <p class="price">₹198 <span class="old-price">₹225</span> (43% OFF)</p>
+      <p class="desc">Matte Finish | Long Lasting | Natural Look</p>
+      
+      <!-- Buy button -->
+      <button class="buy" onclick="handleBuy()"><a href="am3.html">Buy Now</a></button>
+
+      <style>
+        body {
+          font-family: sans-serif;
+          margin: 20;
+          padding: 29px;
+          background-color: #fefefe;
+        }
+        .container {
+          display: flex;
+          max-width: 900px;
+          margin: auto;
+          gap: 30px;
+        }
+        .left img {
+          width: 500px;
+          border-radius: 20px;
+        }
+        .right {
+          flex: 1;
+        }
+        .price {
+          font-size: 22px;
+          color: green;
+          margin-top: 20px;
+        }
+        .old-price {
+          text-decoration: line-through;
+          color: gray;
+        }
+        .desc {
+          margin: 15px 0;
+          font-size: 16px;
+        }
+        button {
+          padding: 10px 20px;
+          margin-right: 10px;
+          border: none;
+          border-radius: 5px;
+          background-color: rgb(14, 187, 234);
+          color: white;
+          cursor: pointer;
+        }
+      </style>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    function handleBuy() {
+      const isSignedIn = sessionStorage.getItem("userLoggedIn") === "true";
+
+      if (!isSignedIn) {
+        alert("Please signup first to buy this product.");
+        // Redirect to signup page
+        window.location.href = "signup.html"; // change as per your signup page
+      } else {
+        // Redirect to payment page if already signed in
+        window.location.href = "a1.html";
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Information</title>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        text-align: center;
+        background: #f2f2f2;
+    }
+
+    /* HEADER */
+    .header {
+        width: 100%;
+        padding: 25px 0;
+        background: white;
+        font-size: 32px;
+        font-weight: bold;
+        border-bottom: 4px solid #d100ff;
+        border-top: 4px solid #ff008c;
+    }
+
+    h2 {
+        margin-top: 35px;
+        font-size: 22px;
+        font-weight: bold;
+    }
+
+    /* CONTACT BOXES */
+    .contact-boxes {
+        margin-top: 30px;
+    }
+
+    .row {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        margin-bottom: 35px;
+    }
+
+    .box {
+        width: 130px;
+        height: 130px;
+        background: linear-gradient(135deg, #ff00aa, #6200ff);
+        border-radius: 20px;
+        box-shadow: 0px 8px 20px rgba(0,0,0,0.3);
+        cursor: pointer;
+        transition: 0.3s;
+        padding-top: 10px;
+    }
+
+    .box:hover {
+        transform: scale(1.05);
+    }
+
+    .box img {
+        width: 55px;
+        height: 55px;
+        margin-top: 10px;
+    }
+
+    .box p {
+        margin-top: 10px;
+        color: white;
+        font-weight: bold;
+        font-size: 16px;
+    }
+
+    /* BACK BUTTON */
+    .back-btn {
+        margin-top: 30px;
+        padding: 12px 30px;
+        font-size: 18px;
+        background: #007bff;
+        color: white;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+    .back-btn:hover {
+        background: #005fcc;
+        transform: scale(1.05);
+    }
+</style>
+</head>
+<body>
+
+<div class="header">
+    CONTACT INFORMATION
+</div>
+
+<h2>HI, HOW CAN I HELP YOU?</h2>
+
+<div class="contact-boxes">
+
+    <!-- Row 1 -->
+    <div class="row">
+        <div class="box" onclick="window.location.href='tel:9444210661'">
+            <!-- BLUE CALL ICON -->
+            <img src="https://cdn-icons-png.flaticon.com/512/724/724664.png">
+            <p>Call</p>
+        </div>
+
+        <div class="box" onclick="window.location.href='https://wa.me/9444210661'">
+            <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png">
+            <p>WhatsApp</p>
+        </div>
+    </div>
+
+    <!-- Row 2 -->
+    <div class="row">
+        <div class="box" onclick="window.location.href='https://www.instagram.com/anu.3dprints/'">
+            <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png">
+            <p>Instagram</p>
+        </div>
+     
+
+        <div class="box" onclick="window.location.href='mailto:anu.3dprints@gmail.com'">
+            <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png">
+            <p>Email</p>
+        </div>
+    </div>
+
+</div>
+
+<button class="back-btn" onclick="history.back()">BACK</button>
+
+</body>
+</html>

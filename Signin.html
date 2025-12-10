@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login Account</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ✅ AOS CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+      background-size: cover;
+      color: white;
+      text-align: center;
+    }
+
+    h2 {
+      margin-top: 40px;
+      color: skyblue;
+    }
+
+    form {
+      margin: 40px auto;
+      padding: 30px;
+      width: 90%;
+      max-width: 400px;
+      background-color: rgba(255, 255, 255, 0.95);
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+      color: #000;
+    }
+
+    label {
+      display: block;
+      text-align: left;
+      margin: 10px 0 5px 5%;
+      font-weight: bold;
+    }
+
+    input, button {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    input {
+      background-color: #f0f0f0;
+    }
+
+    button {
+      background-color: #7d27df;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #5a1cb5;
+    }
+
+    .nav-buttons {
+      margin-top: 20px;
+    }
+
+    .nav-buttons a {
+      text-decoration: none;
+    }
+
+    .nav-buttons button {
+      background-color: #444;
+      margin: 10px 5px;
+    }
+
+    .nav-buttons button:hover {
+      background-color: #222;
+    }
+
+    @media (max-width: 500px) {
+      form {
+        width: 95%;
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  
+
+  <form id="registrationForm" data-aos="zoom-in">
+    <label for="email_ID">Email-ID</label>
+    <input type="email" name="email_ID" required>
+     
+    <label for="Password">Password</label>
+    <input type="password" name="password" required>
+
+
+
+
+
+    <button type="submit">Submit</button>
+  </form>
+
+
+  <!-- ✅ AOS JS -->
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      offset: 100,
+      duration: 1000,
+      once: true,
+    });
+
+    document.getElementById("registrationForm").addEventListener("submit", function (e) {
+      e.preventDefault(); // just placeholder logic
+      alert("Form submitted successfully!");
+    });
+  </script>
+
+</body>
+</html>

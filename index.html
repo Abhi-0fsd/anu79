@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>3D Printing Products</title>
+
+  <!-- AOS Animation Library -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- FontAwesome Icons -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/js/all.min.js"></script>
+
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(135deg, #ff7fb2, #ffb3d9);
+      color: #66112f;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding-bottom: 80px; /* space for bottom nav */
+    }
+
+    /* ---------------- NAVBAR ---------------- */
+    nav {
+      background-color: #f5f5dc;
+      padding: 15px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .logo {
+      width: 50px;
+    }
+
+    .nav-title {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 26px;
+      font-weight: 700;
+      color: #ac1896;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 600px) {
+      .nav-title {
+        font-size: 18px;
+      }
+    }
+
+    /* ---------------- HERO IMAGE ---------------- */
+    section {
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .hero-image {
+      width: 80%;
+      max-width: 800px;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      transition: transform 0.3s;
+    }
+
+    .hero-image:hover {
+      transform: scale(1.05);
+    }
+
+    /* ---------------- CTA BUTTON ---------------- */
+    .cta-button {
+      background-color: #9d0f75;
+      color: white;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 10px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: .3s;
+    }
+
+    .cta-button:hover {
+      background-color: #7a0c5c;
+      transform: translateY(-2px);
+    }
+
+    /* ---------------- BOTTOM NAV BAR ---------------- */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: #f5f5dc;
+      display: flex;
+      justify-content: space-around;
+      padding: 10px 0;
+      box-shadow: 0 -2px 5px rgba(0,0,0,0.2);
+      z-index: 2000;
+    }
+
+    .bottom-nav a {
+      text-decoration: none;
+      color: #ac1896;
+      font-size: 14px;
+      text-align: center;
+    }
+
+    .bottom-nav i {
+      font-size: 22px;
+      margin-bottom: 3px;
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ---------------- NAVBAR ---------------- -->
+  <nav>
+    <img src="https://i.postimg.cc/9X6j04Pq/Whats-App-Image-2025-11-14-at-11-43-57-4cb27b24.jpg"
+         class="logo" alt="Logo">
+    <h1 class="nav-title">3D Printing Products</h1>
+  </nav>
+
+  <!-- ---------------- HERO IMAGE ---------------- -->
+  <section data-aos="fade-up" data-aos-duration="1000">
+    <img
+      src="https://trellis.net/wp-content/uploads/2024/07/3dprintingasharkyusstock.png"
+      alt="3D Printing Image"
+      class="hero-image"
+    >
+  </section>
+
+  <!-- ---------------- BUTTON ---------------- -->
+  <section data-aos="zoom-in-up" data-aos-delay="200">
+    <a href="product.html">
+      <button class="cta-button">Purchase Product</button>
+    </a>
+  </section>
+
+  <!-- ---------------- BOTTOM NAV ---------------- -->
+  <div class="bottom-nav">
+    <a href="home.html">
+      <i class="fas fa-home"></i>
+      Home
+    </a>
+
+    <a href="search.html">
+      <i class="fas fa-search"></i>
+      Search
+    </a>
+
+    <!-- Dynamic Profile Button -->
+    <a href="signup.html" onclick="openProfile()">
+      <i class="fas fa-user"></i>
+      Profile
+    </a>
+
+    <a href="cart.html">
+      <i class="fas fa-shopping-cart"></i>
+      Cart
+    </a>
+
+    <a href="contacts.html">
+      <i class="fas fa-headset"></i>
+      Help
+    </a>
+  </div>
+
+  <!-- AOS Animation Script -->
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
+
+  <!-- DYNAMIC PROFILE REDIRECT SCRIPT -->
+  <script>
+    function openProfile() {
+      let logged = localStorage.getItem("isLoggedIn");
+
+      if (logged === "true") {
+        window.location.href = "profile.html";
+      } else {
+        window.location.href = "signup.html";
+      }
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Pay Now - QR Code</title>
+  <style>
+    body {
+      background: linear-gradient(to bottom, #ffe6f0, #ffd9ec);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+      margin: 0;
+    }
+
+    .box {
+      background-color: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+      text-align: center;
+      width: 360px;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px;
+      background-color: skyblue;
+      color: darkblue;
+      border: none;
+      width: 100%;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .qr {
+      margin-top: 20px;
+    }
+
+    .qr img {
+      width: 200px;
+      height: 200px;
+    }
+
+    .details {
+      margin-top: 10px;
+      font-size: 16px;
+      color: #444;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h2>Pay for: <span id="prodName">Product</span></h2>
+    <input type="text" id="phoneNumber" placeholder="Phone Number (10 digits)" maxlength="10" />
+    <input type="text" id="fullName" placeholder="Name" />
+    <input type="text" id="addr1" placeholder="Address Line 1" />
+    <input type="text" id="addr2" placeholder="Address Line 2" />
+    <input type="text" id="city" placeholder="City" />
+    <input type="text" id="state" placeholder="State" />
+    <input type="text" id="pincode" placeholder="Pincode (6 digits)" maxlength="6" />
+    <button onclick="generateQR()">Continue</button>
+
+    <div class="qr" id="qrBox" style="display:none;">
+      <img id="qrImg" src="" alt="QR Code" />
+      <div class="details" id="info"></div>
+    </div>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const productName = params.get('name') || "Product";
+    const productAmount = params.get('price') || "430";
+    
+
+
+    const receiverUPI = "naravind2604@oksbi";
+
+    document.getElementById("prodName").innerText = productName;
+
+    function generateQR() {
+      const phone = document.getElementById("phoneNumber").value.trim();
+      const name = document.getElementById("fullName").value.trim();
+      const addr1 = document.getElementById("addr1").value.trim();
+      const addr2 = document.getElementById("addr2").value.trim();
+      const city = document.getElementById("city").value.trim();
+      const state = document.getElementById("state").value.trim();
+      const pincode = document.getElementById("pincode").value.trim();
+
+      if (!phone || !name || !addr1 || !addr2 || !city || !state || !pincode) {
+        alert("Please fill in all fields.");
+        return;
+      }
+
+      if (!/^\d{10}$/.test(phone)) {
+        alert("Phone number must be exactly 10 digits.");
+        return;
+      }
+
+      const qrData = `upi://pay?pa=${receiverUPI}&pn=${name}&am=${productAmount}&cu=INR`;
+      const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(qrData)}`;
+
+      document.getElementById("qrImg").src = qrUrl;
+      document.getElementById("info").innerHTML = `
+        <strong>Payment for:</strong> ${productName}<br>
+        Amount: ₹${productAmount}<br>
+        To: ${receiverUPI}<br><br>
+        <strong>User Info</strong><br>
+        Name: ${name}<br>
+        Phone: ${phone}<br>
+        Address: ${addr1}, ${addr2}, ${city}, ${state} - ${pincode}
+      `;
+      document.getElementById("qrBox").style.display = "block";
+    }
+  </script>
+  
+</body>
+   
+    
+</html>

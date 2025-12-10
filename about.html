@@ -1,0 +1,324 @@
+<!-- about.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>About Us — 3D Printing Products</title>
+
+  <!-- Google font -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg: #fff5fb;
+      --card: #fff;
+      --accent: #b30f7a;
+      --muted: #6b4a5a;
+      --shadow: rgba(23,15,28,0.08);
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg, var(--bg) 0%, #ffeef7 60%);
+      color: #2b1a24;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      display:flex;
+      flex-direction:column;
+      min-height:100vh;
+      padding-bottom:40px;
+    }
+
+    /* NAV */
+    nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:18px 20px;
+      gap:12px;
+      background:transparent;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+    .logo{
+      width:48px;
+      height:48px;
+      border-radius:8px;
+      background:linear-gradient(135deg,#ffb3d9,#ff7fb2);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:white;
+      font-weight:700;
+      box-shadow:0 6px 18px var(--shadow);
+      flex:0 0 48px;
+    }
+    .brand h1{
+      font-size:18px;
+      margin:0;
+      color:var(--accent);
+      letter-spacing:0.2px;
+    }
+
+    /* Container */
+    .container{
+      width:100%;
+      max-width:980px;
+      margin:18px auto;
+      padding:18px;
+    }
+
+    /* Page header */
+    .page-header{
+      background:linear-gradient(90deg, rgba(179,15,122,0.06), rgba(157,15,117,0.02));
+      border-radius:14px;
+      padding:28px;
+      box-shadow:0 8px 30px var(--shadow);
+      display:flex;
+      gap:20px;
+      align-items:center;
+    }
+    .page-header h2{
+      margin:0 0 6px 0;
+      font-size:24px;
+      color:var(--accent);
+    }
+    .page-header p{
+      margin:0;
+      color:var(--muted);
+      font-size:15px;
+    }
+
+    /* Cards grid */
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:18px;
+      margin-top:20px;
+    }
+    @media (max-width:880px){
+      .grid{grid-template-columns: repeat(2,1fr)}
+    }
+    @media (max-width:560px){
+      .grid{grid-template-columns: 1fr}
+      .page-header{flex-direction:column;align-items:flex-start}
+    }
+
+    .card{
+      background:var(--card);
+      padding:20px;
+      border-radius:12px;
+      box-shadow:0 10px 30px var(--shadow);
+      transition: transform .22s ease, box-shadow .22s ease;
+      cursor:pointer;
+      min-height:120px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      gap:10px;
+    }
+    .card:active{transform:scale(.997)}
+    .card:hover{
+      transform:translateY(-6px);
+      box-shadow:0 18px 40px rgba(23,15,28,0.12);
+    }
+
+    .card h3{
+      margin:0;
+      font-size:18px;
+      color:var(--accent);
+    }
+    .card p{
+      margin:0;
+      color:#543542;
+      line-height:1.4;
+      font-size:14px;
+    }
+
+    /* collapsible extra text - toggled by JS */
+    .card .extra{
+      margin-top:10px;
+      font-size:13px;
+      color:#6f4e5e;
+      max-height:0;
+      overflow:hidden;
+      transition: max-height .28s ease, opacity .18s ease;
+      opacity:0;
+    }
+    .card.open .extra{
+      opacity:1;
+      max-height:120px;
+    }
+
+    /* CTA row */
+    .row{
+      display:flex;
+      gap:12px;
+      margin-top:22px;
+      flex-wrap:wrap;
+    }
+    .btn{
+      border:0;
+      padding:12px 16px;
+      border-radius:10px;
+      font-weight:600;
+      cursor:pointer;
+      box-shadow:0 8px 20px var(--shadow);
+    }
+    .btn-primary{
+      background:var(--accent);
+      color:white;
+    }
+    .btn-ghost{
+      background:transparent;
+      color:var(--accent);
+      border:1px solid rgba(179,15,122,0.12);
+    }
+
+    /* small footer note */
+    .note{
+      margin-top:22px;
+      color:#6b4a5a;
+      font-size:13px;
+    }
+
+    /* accessible focus */
+    .card:focus, .btn:focus, button:focus{
+      outline:3px solid rgba(179,15,122,0.12);
+      outline-offset:3px;
+    }
+
+    /* Help floating button (consistent with your site) */
+    .help-float{
+      position:fixed;
+      right:20px;
+      bottom:20px;
+      width:62px;
+      height:62px;
+      border-radius:50%;
+      background:#fff;
+      color:#007bff;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:800;
+      box-shadow:0 8px 24px rgba(0,0,0,0.12);
+      border:0;
+      cursor:pointer;
+    }
+    .help-float:hover{transform:scale(1.06)}
+  </style>
+</head>
+<body>
+
+  <nav aria-label="Main navigation">
+    <div class="brand">
+      <div class="logo" aria-hidden="true">3D</div>
+      <h1>3D Printing Products</h1>
+    </div>
+
+    
+  </nav>
+
+  <main class="container" id="main">
+    <header class="page-header" role="banner" aria-labelledby="aboutTitle">
+      <div>
+        <h2 id="aboutTitle">About Us</h2>
+        <p>Small team. Big ideas. We bring simple, useful 3D printed products to everyday life.</p>
+      </div>
+    </header>
+
+    <!-- Cards for your three sections -->
+    <section class="grid" aria-label="About sections">
+
+      <!-- Who We Are -->
+      <article class="card" tabindex="0" data-key="who">
+        <h3>Who We Are</h3>
+        <p>We are a small team passionate about creating useful and creative 3D printed products for everyday needs.</p>
+        <div class="extra" aria-hidden="true">
+          Founded by makers and designers, we work directly with customers to turn ideas into durable, functional objects.
+        </div>
+      </article>
+
+      <!-- What We Do -->
+      <article class="card" tabindex="0" data-key="what">
+        <h3>What We Do</h3>
+        <p>We design, print, and deliver personalized 3D items using modern printing technology.</p>
+        <div class="extra" aria-hidden="true">
+          From single prototypes to small runs, we handle modeling, finishing, and quality checks so you receive ready-to-use parts.
+        </div>
+      </article>
+
+      <!-- Our Goal -->
+      <article class="card" tabindex="0" data-key="goal">
+        <h3>Our Goal</h3>
+        <p>To make 3D printing easy, affordable, and accessible for everyone.</p>
+        <div class="extra" aria-hidden="true">
+          We aim to simplify the process and offer clear pricing so creators of all levels can bring their ideas to life.
+        </div>
+      </article>
+
+    </section>
+
+    <div class="row" role="region" aria-label="actions">
+      <button class="btn btn-primary" id="orderBtn">Order a Custom Print</button>
+      <button class="btn btn-ghost" id="learnBtn">Learn More</button>
+    </div>
+
+    <p class="note">Tip: Click any card to read a short extra note about that topic.</p>
+  </main>
+
+  <!-- Floating HELP button -->
+  <button class="help-float" aria-label="Help" title="Help" onclick="location.href='contacts.html'">HELP</button>
+
+  <script>
+    // Small, friendly JS:
+    // - Toggle .open on card click / Enter or Space to reveal the extra text
+    // - "Order a Custom Print" button goes to a contact/order page
+    // - "Learn More" scrolls to top (example behavior you can change)
+
+    (function(){
+      const cards = document.querySelectorAll('.card');
+      cards.forEach(card => {
+        const extra = card.querySelector('.extra');
+
+        // Toggle function
+        function toggle(e){
+          const isOpen = card.classList.toggle('open');
+          extra.setAttribute('aria-hidden', !isOpen);
+        }
+
+        // Click and keyboard interactions
+        card.addEventListener('click', toggle);
+        card.addEventListener('keydown', function(ev){
+          if(ev.key === 'Enter' || ev.key === ' '){
+            ev.preventDefault();
+            toggle();
+          }
+        });
+      });
+
+      // Buttons
+      document.getElementById('orderBtn').addEventListener('click', function(){
+        // go to contact/order page - change as needed
+        location.href = 'contact.html';
+      });
+
+      document.getElementById('learnBtn').addEventListener('click', function(){
+        // Example action: scroll to top and expand first card
+        window.scrollTo({top:0, behavior:'smooth'});
+        const first = document.querySelector('.card');
+        if(first) first.classList.add('open');
+      });
+    })();
+  </script>
+  <button class="back-btn" onclick="history.back()">BACK</button>
+</body>
+</html>
